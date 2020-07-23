@@ -16,6 +16,7 @@ require_relative 'show'
 class Game
 	attr_accessor :grid, :players, :game_status, :selection
 
+  #on initialise la classe Game
 	def initialize
 	  @players = []
     @grid = Board.new
@@ -24,6 +25,7 @@ class Game
     player_selection
 	end
 
+  #méthode pour créer les joueurs
   def creating_players
     @players << Player.new("x")
     @players << Player.new("o")
@@ -50,7 +52,7 @@ class Game
   #ce qu'un joueur va jouer
   def player_selection
     player_name = who_is_playing?
-    puts "What's your move #{player_name.name}?"
+    puts "C'est quoi ton moove #{player_name.name}?"
     print ">" 
     @selection = gets.chomp
     checking_selection

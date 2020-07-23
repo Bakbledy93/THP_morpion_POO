@@ -3,10 +3,12 @@
 
 # Variables d'instance : une Boardcase est définie par sa position (A1, B2, B3, etc.) et son contenu (Soit elle est vide, 
 # soit elle a comme valeur le string "x", soit elle a comme valeur le string "o").
+
 require 'pry'
 class BoardCase
   attr_accessor :position, :value
 
+  # on initilise deux Arrays : un comprenant toutes les positions, l'autre les trois valeurs possibles.
   def initialize(value = " ")
     @position = ["A1", "A2","A3","B1","B2","B3","C1","C2","C3"]
     @value = [" ", "x", "o"]
