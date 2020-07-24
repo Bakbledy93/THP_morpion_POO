@@ -16,18 +16,17 @@ require_relative 'show'
 class Game
 	attr_accessor :grid, :players, :game_status, :selection
 
-  #on initialise la classe Game
 	def initialize
 	  @players = []
     @grid = Board.new
     @grid.turn_count = 1
-    creating_players
-    player_selection
+    #creating_players
 	end
 
-  #méthode pour créer les joueurs
   def creating_players
+    puts "Please select first player's name?"
     @players << Player.new("x")
+    puts "Please select second player's name?"
     @players << Player.new("o")
   end
 
@@ -52,8 +51,8 @@ class Game
   #ce qu'un joueur va jouer
   def player_selection
     player_name = who_is_playing?
-    puts "C'est quoi ton moove #{player_name.name}?"
-    print ">" 
+    puts "What's your move #{player_name.name}?"
+    print " >" 
     @selection = gets.chomp
     checking_selection
   end
@@ -62,6 +61,9 @@ class Game
     @grid.player_selection_hash(@grid.boardcases_hash, @selection, who_is_playing?.sign)
   end
 
+  def getting_hash_data
+    data = @grid.boardcases_hash
+  end
 
 end
 

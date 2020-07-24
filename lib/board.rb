@@ -16,49 +16,47 @@ require 'pry'
 class Board
  attr_accessor :boardcases_hash, :turn_count, :victory_condition
 
- #On initialise la class Board
   def initialize
     @turn_count = 1
-    @boardcases_hash = Hash.new #on créé un hash qui va contenir les 9 Boardcases
-    @victory_condition = false #on initialise la variable d'instance pour les conditions de victoire
-    boardcase = BoardCase.new #on initialise la classe BoardCase
-    #on fait une boucle pour intégrer les valeurs de chaque case dans une hash
+    @boardcases_hash = Hash.new
+    @victory_condition = false
+    boardcase = BoardCase.new
     for x in (0..8) do
       @boardcases_hash[boardcase.position[x]] = boardcase.value[0]
     end    
   end
 
-  #méthode pour vérifier si le coup jouer par le joueur est possible, si oui , il place son symbole dans la value correspondante à la key
   def player_selection_hash(boardcases_hash,selection,player_sign)
     if boardcases_hash.has_key?(selection) == true && boardcases_hash[selection] == " "
       boardcases_hash[selection] = player_sign ##<= recuperer la valeur du sign des players
-      puts "Nous sommes au tour numéro #{@turn_count +=1}"
+      puts " "
+      puts "***** ROUND #{@turn_count +=1} ****"
+      puts " "
     else
-      puts "C'est pas bon, ouvre tes yeux"
+      puts "Bad selection. Please try again"
     end
   end
 
-  #méthode pour déterminer les 9 conditions de victoires possibles
   def victory?(boardcases_hash)
     case !@victory_condition
       when boardcases_hash['A1'] == boardcases_hash['A2'] && boardcases_hash['A1'] == boardcases_hash['A3'] && boardcases_hash['A3'] != " "
-        puts "Tu préfère être un champion ou un looser? la question est vite répondu."
+        puts "You Win"
       when boardcases_hash['B1'] == boardcases_hash['B2'] && boardcases_hash['B1'] == boardcases_hash['B3'] && boardcases_hash['B3'] != " "
-        puts "Ramène la coupe à la maison"
+        puts "You Win"
       when boardcases_hash['C1'] == boardcases_hash['C2'] && boardcases_hash['C1'] == boardcases_hash['C3'] && boardcases_hash['C3'] != " "
-        puts "Champion mon frère"
+        puts "You Win"
       when boardcases_hash['A1'] == boardcases_hash['B1'] && boardcases_hash['A1'] == boardcases_hash['C1'] && boardcases_hash['C1'] != " "
-        puts "Yeah t'es un vrai BG"
+        puts "You Win"
       when boardcases_hash['A2'] == boardcases_hash['B2'] && boardcases_hash['A2'] == boardcases_hash['C2'] && boardcases_hash['C2'] != " "
-        puts "Le sourire de l'âne"
+        puts "You Win"
       when boardcases_hash['A3'] == boardcases_hash['B3'] && boardcases_hash['A3'] == boardcases_hash['C3'] && boardcases_hash['C3'] != " "
-        puts "Le charisme de Macron BG"
+        puts "You Win"
       when boardcases_hash['A1'] == boardcases_hash['B2'] && boardcases_hash['A1'] == boardcases_hash['C3'] && boardcases_hash['C3'] != " "
-        puts "Aussi beau que Donald Trump, t'es un champion"
+        puts "You Win"
       when boardcases_hash['A3'] == boardcases_hash['B2'] && boardcases_hash['A3'] == boardcases_hash['C1'] && boardcases_hash['C1'] != " "
-        puts "SUUUUuuuUUUUUuuuu t'as les biscoto de ronaldo"
+        puts "You Win"
     else
-      puts "Aller on s'endort pas, on continue à jouer"
+      puts 'Keep going !'
       false
     end
   end

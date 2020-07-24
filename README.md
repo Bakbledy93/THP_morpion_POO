@@ -1,7 +1,12 @@
-Projet établie en PAIR PROGRAMMING :
-il manque quelques fonctionnalités , recommencer une partie, les couleurs...
-Fait avec : 
-DAVID BERAUD
-JUAN MORA
-DANIEL STRAVROFF
-KEVIN PHIMPHACHANH
+TIC TAC TOE
+The Hacking Project
+
+Project realise en pair programming avec:
+Kevin Phim, David Bereaud et Daniel Stravroff
+
+Realisation d'un jeu de Morpion (TIC TAC TOE) en Ruby.
+
+
+Pour lancer l'application executer le fichier: app.rb
+
+(assurez vous d'avoir la bonne version de Ruby et faire un bundle.install ;D )

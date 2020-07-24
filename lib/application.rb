@@ -8,33 +8,50 @@ require_relative 'show'
 class Application
   attr_accessor :game, :board_to_show, :hash
 
-  #on initialise la partie
   def initialize
-    first_board = Show.new.initial_board #on affiche le tableau initiale pour voir quel coup jouer
     @game = Game.new
-    @hash = @game.grid.boardcases_hash #affiche le hash avec les coups joués
-    perform
+    @hash = Hash.new
+    @board_to_show = Show.new
+    party
   end
   
-  #méthode avec une boucle qui continue tant qu'il n'y à pas de gagnant ou d'égalité
   def party
+    showing_presentation_menu
+    @game.creating_players
+    showing_board
     while @game.is_going? == true
+      @game.player_selection
+      @game.is_going?
       showing_board
-       @game.player_selection
-       @game.is_going?
-     end
+    end
+    puts "--- END OF THE GAME ---"
+    restarting_app
   end
 
-  #méthode pour afficher l'état du plateau de jeau
   def showing_board
-    @board_to_show = Show.new.show_board(hash)
+    @board_to_show.show_board(getting_data)
   end
 
-  def perform
-     party
-     showing_board
+  def getting_data
+    @game.grid.boardcases_hash
   end
-   
-  #binding.pry
+
+  def player_selection
+    @game.player_selection
+  end
+
+  def showing_presentation_menu
+    @board_to_show.presentation_menu
+  end
+
+  def restarting_app
+    selection = @board_to_show.show_end_menu
+    if selection == "A" 
+      puts "Keep playing" 
+      initialize
+    else 
+      puts "See you soon"
+    end
+  end
 
 end

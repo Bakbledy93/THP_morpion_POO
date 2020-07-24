@@ -1,55 +1,61 @@
 # Show : cette classe sera une sorte de view. Elle affichera l'état du plateau de jeu à un instant T.
 require 'pry'
+require_relative 'board'
 require_relative 'game'
 require_relative 'application'
-require_relative 'board'
 
 class Show
+  attr_accessor :hash
 
-  #plateau initial
-  def initial_board 
-    puts "\n"
-    puts "  BIENVENUE DANS LE GAME"
-    puts "     FAIS TON MOOVE"
-    puts " MAIS RENSEIGNE TON BLAZE"
-    puts "        EN PREMIER"
-    puts "\n"
+  def show_board(hash)
+    puts ""
     puts "   | _A_ | _B_ | _C_ |"
     puts "   |     |     |     |"
-    puts " 1 |     |     |     |"
+    puts " 1 |  #{hash["A1"]}  |  #{hash["B1"]}  |  #{hash["C1"]}  |"
     puts "   |     |     |     |"
-    puts  "-"*22 
+    puts "   " + "-"*19 
     puts "   |     |     |     |"
-    puts " 2 |     |     |     |"
+    puts " 2 |  #{hash["A2"]}  |  #{hash["B2"]}  |  #{hash["C2"]}  |"
     puts "   |     |     |     |" 
-    puts  "-"*22
+    puts "   " + "-"*19
     puts "   |     |     |     |"
-    puts " 3 |     |     |     |"
+    puts " 3 |  #{hash["A3"]}  |  #{hash["B3"]}  |  #{hash["C3"]}  |"
     puts "   |     |     |     |"
-    puts "-"*22
+    puts "   " + "-"*19
     puts ''
   end
 
-  #plateau de jeu qui se met à jour
-  def show_board(hash)
-    puts "\n"
-    puts "         MORPION"
-    puts "\n"
-    puts "   | _A_ | _B_ | _C_ |"
-    puts "   |     |     |     |"
-    puts " 1 |#{hash.values_at("A1")}|#{hash.values_at("B1")}|#{hash.values_at("C1")}|"
-    puts "   |     |     |     |"
-    puts  "-"*22 
-    puts "   |     |     |     |"
-    puts " 2 |#{hash.values_at("A2")}|#{hash.values_at("B2")}|#{hash.values_at("C2")}|"
-    puts "   |     |     |     |" 
-    puts  "-"*22
-    puts "   |     |     |     |"
-    puts " 3 |#{hash.values_at("A3")}|#{hash.values_at("B3")}|#{hash.values_at("C3")}|"
-    puts "   |     |     |     |"
-    puts "-"*22
-    puts ''
+  def presentation_menu
+    puts "="*37
+    puts "||                                 ||"
+    puts "||  WELCOME TO OUR BRAND NEW GAME  ||"
+    puts "||          TIC TAC TOE            ||"
+    puts "||                                 ||"
+    puts "="*37
+    puts " "
+    puts "GAME INSTRUCTIONS: 
+    The game is played on a grid that's 3 squares by 3 squares.
+Player1 is X, and Player 2 is O.
+The first player to get 3 of her marks in a row (up, down,
+across, or diagonally) is the winner. 
+When all 9 squares are full, the game is over.
+    "
+    puts " "
+    puts "Please select the Player1 and Player 2 names"
+    puts " "
+    puts "For selecting your play, write the letter A,B or C 
+    and a number 1,2 or 3 (exemple: A1) "
+    puts ""
+  end
+
+  def show_end_menu
+    puts "You have finished the game !!!"
+    puts "What would you like to do now ?"
+    puts " > A - I loved it, i will like to play again !!!"
+    puts " > X - It's too funny for me, I need some rest. Please exit the game"
+    selection = gets.chomp
+    return selection
   end
 end
 
-#  binding.pry
+#binding.pry
